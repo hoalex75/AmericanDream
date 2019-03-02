@@ -12,6 +12,7 @@
 		FABB9AF2222B372000D131E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABB9AF0222B372000D131E0 /* Main.storyboard */; };
 		FABB9AF4222B372100D131E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FABB9AF3222B372100D131E0 /* Assets.xcassets */; };
 		FABB9AF7222B372100D131E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABB9AF5222B372100D131E0 /* LaunchScreen.storyboard */; };
+		FABB9B03222B3BC700D131E0 /* ExchangeRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB9B02222B3BC700D131E0 /* ExchangeRateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		FABB9AF3222B372100D131E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FABB9AF6222B372100D131E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FABB9AF8222B372100D131E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FABB9B02222B3BC700D131E0 /* ExchangeRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,47 @@
 		FABB9AEB222B372000D131E0 /* AmericanDream */ = {
 			isa = PBXGroup;
 			children = (
-				FABB9AEC222B372000D131E0 /* AppDelegate.swift */,
-				FABB9AEE222B372000D131E0 /* ViewController.swift */,
-				FABB9AF0222B372000D131E0 /* Main.storyboard */,
-				FABB9AF3222B372100D131E0 /* Assets.xcassets */,
-				FABB9AF5222B372100D131E0 /* LaunchScreen.storyboard */,
-				FABB9AF8222B372100D131E0 /* Info.plist */,
+				FABB9AFE222B372900D131E0 /* Model */,
+				FABB9B00222B373A00D131E0 /* View */,
+				FABB9AFF222B373200D131E0 /* Controller */,
+				FABB9B01222B374A00D131E0 /* Supporting Files */,
 			);
 			path = AmericanDream;
+			sourceTree = "<group>";
+		};
+		FABB9AFE222B372900D131E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FABB9AFF222B373200D131E0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FABB9AEE222B372000D131E0 /* ViewController.swift */,
+				FABB9B02222B3BC700D131E0 /* ExchangeRateViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FABB9B00222B373A00D131E0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FABB9AF0222B372000D131E0 /* Main.storyboard */,
+				FABB9AF5222B372100D131E0 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FABB9B01222B374A00D131E0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FABB9AEC222B372000D131E0 /* AppDelegate.swift */,
+				FABB9AF3222B372100D131E0 /* Assets.xcassets */,
+				FABB9AF8222B372100D131E0 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABB9B03222B3BC700D131E0 /* ExchangeRateViewController.swift in Sources */,
 				FABB9AEF222B372000D131E0 /* ViewController.swift in Sources */,
 				FABB9AED222B372000D131E0 /* AppDelegate.swift in Sources */,
 			);
@@ -284,7 +320,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 529LRG4ZS2;
-				INFOPLIST_FILE = AmericanDream/Info.plist;
+				INFOPLIST_FILE = "AmericanDream/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -292,7 +329,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.alexandreholet.AmericanDream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -302,7 +339,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 529LRG4ZS2;
-				INFOPLIST_FILE = AmericanDream/Info.plist;
+				INFOPLIST_FILE = "AmericanDream/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,7 +348,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.alexandreholet.AmericanDream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
