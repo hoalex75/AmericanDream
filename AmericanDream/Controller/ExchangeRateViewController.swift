@@ -17,11 +17,6 @@ class ExchangeRateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-    @IBAction func calculateAmount() {
         toggleActivityIndicator(shown: true)
         ExchangeRateService.shared.getExchangeRate { (success, rate) in
             if success {
@@ -30,6 +25,15 @@ class ExchangeRateViewController: UIViewController {
             self.toggleActivityIndicator(shown: false)
         }
     }
+    
+    @IBAction func calculateAmount() {
+        ExchangeRateService.shared.sendResult(numberToChange: amountToExchange.text) { (success, resultNumber) in
+            if success {
+                result.text = "\(resultNumber!) Dollars."
+            }
+        }
+    }
+    
     
     
     private func toggleActivityIndicator(shown: Bool) {
@@ -46,4 +50,16 @@ class ExchangeRateViewController: UIViewController {
     }
     */
 
+}
+
+extension ExchangeRateViewController: UITextFieldDelegate {
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        amountToExchange.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

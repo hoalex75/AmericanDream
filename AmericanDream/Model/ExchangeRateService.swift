@@ -15,6 +15,7 @@ class ExchangeRateService {
     private static let apiKey = "98312c5648eafa487324aba893d79bcc"
     private init() {}
     private var task: URLSessionDataTask?
+    var rate : Double?
     
     func getExchangeRate(callback: @escaping (Bool,Double?) -> Void) {
 //        var request = URLRequest(url: ExchangeRateService.urlApi)
@@ -41,11 +42,29 @@ class ExchangeRateService {
                     callback(false,nil)
                     return
                 }
-                print(exchangeRate)
-                callback(true,exchangeRate.rates["USD"])
+                self.rate = exchangeRate.rates["USD"]
+                callback(true,self.rate)
             }
         }
         task?.resume()
+    }
+    
+    func calculate(_ numberGiven: Double) -> Double{
+        let result: Double = rate!*numberGiven
+        return result.roundedToASpecificNumberAfterComa(numberOfNumbersAfterComa: 2)
+    }
+    
+    func sendResult(numberToChange: String?,callback: (Bool,Double?) -> Void) {
+        guard let numberToChange = numberToChange else {
+            callback(false,nil)
+            return
+        }
+        guard let changingNumber = Double(numberToChange) else {
+            callback(false,nil)
+            return
+        }
+        let result = calculate(changingNumber)
+        callback(true,result)
     }
 }
 
@@ -77,4 +96,5 @@ extension ExchangeRate: Decodable {
         self.init(success: success, base: base, rates: rates) // initializing our struct
     }
 }
+
 
