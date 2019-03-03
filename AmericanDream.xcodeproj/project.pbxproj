@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA4CCEA1222C14D1006C9967 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CCEA0222C14D1006C9967 /* ExchangeRateService.swift */; };
 		FABB9AED222B372000D131E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB9AEC222B372000D131E0 /* AppDelegate.swift */; };
 		FABB9AEF222B372000D131E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB9AEE222B372000D131E0 /* ViewController.swift */; };
 		FABB9AF2222B372000D131E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABB9AF0222B372000D131E0 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA4CCEA0222C14D1006C9967 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
 		FABB9AE9222B372000D131E0 /* AmericanDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericanDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABB9AEC222B372000D131E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FABB9AEE222B372000D131E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA4CCE9F222C14C3006C9967 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA4CCEA0222C14D1006C9967 /* ExchangeRateService.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FABB9AE0222B372000D131E0 = {
 			isa = PBXGroup;
 			children = (
@@ -56,19 +66,12 @@
 		FABB9AEB222B372000D131E0 /* AmericanDream */ = {
 			isa = PBXGroup;
 			children = (
-				FABB9AFE222B372900D131E0 /* Model */,
+				FA4CCE9F222C14C3006C9967 /* Model */,
 				FABB9B00222B373A00D131E0 /* View */,
 				FABB9AFF222B373200D131E0 /* Controller */,
 				FABB9B01222B374A00D131E0 /* Supporting Files */,
 			);
 			path = AmericanDream;
-			sourceTree = "<group>";
-		};
-		FABB9AFE222B372900D131E0 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		FABB9AFF222B373200D131E0 /* Controller */ = {
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA4CCEA1222C14D1006C9967 /* ExchangeRateService.swift in Sources */,
 				FABB9B03222B3BC700D131E0 /* ExchangeRateViewController.swift in Sources */,
 				FABB9AEF222B372000D131E0 /* ViewController.swift in Sources */,
 				FABB9AED222B372000D131E0 /* AppDelegate.swift in Sources */,

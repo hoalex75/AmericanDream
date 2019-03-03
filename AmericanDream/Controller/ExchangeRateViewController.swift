@@ -22,8 +22,20 @@ class ExchangeRateViewController: UIViewController {
     }
     
     @IBAction func calculateAmount() {
+        toggleActivityIndicator(shown: true)
+        ExchangeRateService.shared.getExchangeRate { (success, rate) in
+            if success {
+                self.exchangeRate.text = "\(rate!)"
+            }
+            self.toggleActivityIndicator(shown: false)
+        }
     }
     
+    
+    private func toggleActivityIndicator(shown: Bool) {
+        calculateButton.isHidden = shown
+        activityIndicator.isHidden = !shown
+    }
     /*
     // MARK: - Navigation
 
