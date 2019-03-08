@@ -11,7 +11,7 @@ import Foundation
 class ExchangeRateService {
     static var shared = ExchangeRateService()
     
-    private static let urlApi = URL(string: "http://data.fixer.io/api/latest?access_key=\(ExchangeRateService.apiKey)&symbols=usd")!
+    private static let urlApi = URL(string: "http://data.fixer.io/api/latest?access_key=98312c5648eafa487324aba893d79bcc&symbols=usd")!
     private static let apiKey = "98312c5648eafa487324aba893d79bcc"
     private init() {}
     private var task: URLSessionDataTask?
@@ -38,7 +38,6 @@ class ExchangeRateService {
                 }
                 
                 guard let exchangeRate = try? JSONDecoder().decode(ExchangeRate.self, from: data) else {
-                    print(String(data: data, encoding: .utf8))
                     callback(false,nil)
                     return
                 }
@@ -59,7 +58,8 @@ class ExchangeRateService {
             callback(false,nil)
             return
         }
-        guard let changingNumber = Double(numberToChange) else {
+        let numberToChangeWithDots = numberToChange.transformComaIntoDots()
+        guard let changingNumber = Double(numberToChangeWithDots) else {
             callback(false,nil)
             return
         }

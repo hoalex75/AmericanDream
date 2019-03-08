@@ -10,6 +10,8 @@
 		FA4CCEA1222C14D1006C9967 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CCEA0222C14D1006C9967 /* ExchangeRateService.swift */; };
 		FA4CCEA9222C284C006C9967 /* AmericanDreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CCEA8222C284C006C9967 /* AmericanDreamTests.swift */; };
 		FA4CCEB1222C3F98006C9967 /* VariousExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CCEB0222C3F98006C9967 /* VariousExtensions.swift */; };
+		FA4CCEB322328671006C9967 /* ExchangeRate.json in Resources */ = {isa = PBXBuildFile; fileRef = FA4CCEB222328671006C9967 /* ExchangeRate.json */; };
+		FA4CCEB52232868E006C9967 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CCEB42232868E006C9967 /* FakeResponseData.swift */; };
 		FABB9AED222B372000D131E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB9AEC222B372000D131E0 /* AppDelegate.swift */; };
 		FABB9AEF222B372000D131E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB9AEE222B372000D131E0 /* ViewController.swift */; };
 		FABB9AF2222B372000D131E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABB9AF0222B372000D131E0 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 		FA4CCEA8222C284C006C9967 /* AmericanDreamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericanDreamTests.swift; sourceTree = "<group>"; };
 		FA4CCEAA222C284C006C9967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA4CCEB0222C3F98006C9967 /* VariousExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariousExtensions.swift; sourceTree = "<group>"; };
+		FA4CCEB222328671006C9967 /* ExchangeRate.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ExchangeRate.json; sourceTree = "<group>"; };
+		FA4CCEB42232868E006C9967 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		FABB9AE9222B372000D131E0 /* AmericanDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericanDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABB9AEC222B372000D131E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FABB9AEE222B372000D131E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 			children = (
 				FA4CCEA8222C284C006C9967 /* AmericanDreamTests.swift */,
 				FA4CCEAA222C284C006C9967 /* Info.plist */,
+				FA4CCEB222328671006C9967 /* ExchangeRate.json */,
+				FA4CCEB42232868E006C9967 /* FakeResponseData.swift */,
 			);
 			path = AmericanDreamTests;
 			sourceTree = "<group>";
@@ -218,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA4CCEB322328671006C9967 /* ExchangeRate.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA4CCEA9222C284C006C9967 /* AmericanDreamTests.swift in Sources */,
+				FA4CCEB52232868E006C9967 /* FakeResponseData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

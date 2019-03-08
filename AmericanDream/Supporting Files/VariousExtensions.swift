@@ -19,3 +19,19 @@ extension Double {
         return numberRounded
     }
 }
+
+extension String {
+    func transformComaIntoDots() -> String {
+        var result = ""
+        var append : Character = "."
+        self.forEach { (character) in
+            if character == "," {
+                append = "."
+            } else {
+                append = character
+            }
+            result.append(append)
+        }
+        return result
+    }
+}

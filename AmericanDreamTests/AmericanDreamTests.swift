@@ -25,5 +25,13 @@ class ExchangeRateServiceTestCase: XCTestCase {
         
         XCTAssertEqual(result, 22.89)
     }
+    
+    func testGivenStringWithComa_WhenTransformFuncIsApplied_ThenStringWithDots() {
+        let given = "123,456"
+        
+        let result = given.transformComaIntoDots()
+        
+        XCTAssertEqual(result, "123.456")
+    }
 
 }
