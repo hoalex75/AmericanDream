@@ -10,17 +10,103 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Traduction-->
         <scene sceneID="NKJ-Q8-VnF">
             <objects>
-                <viewController id="0EH-Bu-fSa" sceneMemberID="viewController">
+                <viewController id="0EH-Bu-fSa" customClass="TranslationViewController" customModule="AmericanDream" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ORD-Ry-G6N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCt-Sd-YgN">
+                                <rect key="frame" x="20" y="565" width="335" height="38"/>
+                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tCt-Sd-YgN" secondAttribute="height" multiplier="335:38" id="AHp-R3-Xb5"/>
+                                </constraints>
+                                <state key="normal" title="Calculer"/>
+                                <connections>
+                                    <action selector="calculateAmount" destination="A8y-Gu-AaS" eventType="touchUpInside" id="04J-O1-gqi"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0yX-1Q-Sqm">
+                                <rect key="frame" x="177.5" y="574" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLr-jJ-W1C">
+                                <rect key="frame" x="20" y="40" width="335" height="505"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="4qg-Du-2yv">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="184.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vfu-ie-R3A" userLabel="A traduire">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="67"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Texte à traduire" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNg-3j-aKC">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="29"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fsf-Wv-8JA">
+                                                        <rect key="frame" x="0.0" y="37" width="335" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NDw-ej-xsw" userLabel="Traduction">
+                                                <rect key="frame" x="0.0" y="127" width="335" height="57.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Texte traduit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rvk-At-2J5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="29"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Texte traduit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDl-Ir-DgU" userLabel="Texte traduit">
+                                                        <rect key="frame" x="0.0" y="37" width="96" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4qg-Du-2yv" firstAttribute="top" secondItem="fLr-jJ-W1C" secondAttribute="top" id="1Bf-yx-6nh"/>
+                                    <constraint firstAttribute="bottom" secondItem="4qg-Du-2yv" secondAttribute="bottom" id="2cx-lX-hA5"/>
+                                    <constraint firstAttribute="trailing" secondItem="4qg-Du-2yv" secondAttribute="trailing" id="JIM-r4-si7"/>
+                                    <constraint firstItem="4qg-Du-2yv" firstAttribute="leading" secondItem="fLr-jJ-W1C" secondAttribute="leading" id="b0v-ei-KUO"/>
+                                    <constraint firstItem="4qg-Du-2yv" firstAttribute="width" secondItem="fLr-jJ-W1C" secondAttribute="width" id="gzM-Pd-ZJd"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0yX-1Q-Sqm" firstAttribute="centerX" secondItem="ORD-Ry-G6N" secondAttribute="centerX" id="7Xm-OQ-336"/>
+                            <constraint firstItem="tCt-Sd-YgN" firstAttribute="width" secondItem="tCt-Sd-YgN" secondAttribute="height" multiplier="335:38" id="Fz2-Km-DmU"/>
+                            <constraint firstItem="0yX-1Q-Sqm" firstAttribute="centerY" secondItem="tCt-Sd-YgN" secondAttribute="centerY" id="VMa-UU-lUa"/>
+                            <constraint firstItem="fLr-jJ-W1C" firstAttribute="leading" secondItem="kCM-Nk-G0H" secondAttribute="leading" constant="20" id="YVh-qh-vdb"/>
+                            <constraint firstItem="tCt-Sd-YgN" firstAttribute="top" secondItem="fLr-jJ-W1C" secondAttribute="bottom" constant="20" id="dGX-7N-gbk"/>
+                            <constraint firstItem="kCM-Nk-G0H" firstAttribute="trailing" secondItem="fLr-jJ-W1C" secondAttribute="trailing" constant="20" id="k9s-zg-amQ"/>
+                            <constraint firstItem="fLr-jJ-W1C" firstAttribute="top" secondItem="kCM-Nk-G0H" secondAttribute="top" constant="20" id="lgL-4a-4ej"/>
+                            <constraint firstItem="tCt-Sd-YgN" firstAttribute="leading" secondItem="kCM-Nk-G0H" secondAttribute="leading" constant="20" id="oJq-za-of0"/>
+                            <constraint firstItem="kCM-Nk-G0H" firstAttribute="bottom" secondItem="tCt-Sd-YgN" secondAttribute="bottom" constant="15" id="vFN-an-cV1"/>
+                            <constraint firstItem="kCM-Nk-G0H" firstAttribute="trailing" secondItem="tCt-Sd-YgN" secondAttribute="trailing" constant="20" id="wom-T7-58P"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="kCM-Nk-G0H"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="787-c4-UIX"/>
+                    <tabBarItem key="tabBarItem" title="Traduction" id="787-c4-UIX"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="0yX-1Q-Sqm" id="WBx-bn-qxE"/>
+                        <outlet property="textToTranslate" destination="Fsf-Wv-8JA" id="Y25-tK-aSq"/>
+                        <outlet property="translateButton" destination="tCt-Sd-YgN" id="btK-d0-U0b"/>
+                        <outlet property="translatedLabel" destination="GDl-Ir-DgU" id="zZu-z7-xRY"/>
+                        <outlet property="translatedTextField" destination="GDl-Ir-DgU" id="Jf0-xf-NkT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vfw-e8-U6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
