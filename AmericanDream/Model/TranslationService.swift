@@ -17,7 +17,7 @@ class TranslationService {
     func translate(textToTranslate: String, callback: @escaping (Bool, String?) -> Void) {
         var request = URLRequest(url: TranslationService.urlApi)
         request.httpMethod = "POST"
-        let body = "key=AIzaSyDaQLJNCHFuKw9XUTMSNcGIZWCCySTDiTA&q=\(textToTranslate)&target=fr&source=en"
+        let body = "key=AIzaSyDaQLJNCHFuKw9XUTMSNcGIZWCCySTDiTA&q=\(textToTranslate)&target=fr&source=en&format=text"
         request.httpBody = body.data(using: .utf8)
         let session = URLSession(configuration: .default)
         
