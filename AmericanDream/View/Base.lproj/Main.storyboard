@@ -24,12 +24,13 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tCt-Sd-YgN" secondAttribute="height" multiplier="335:38" id="AHp-R3-Xb5"/>
                                 </constraints>
-                                <state key="normal" title="Calculer"/>
+                                <state key="normal" title="Traduire"/>
                                 <connections>
                                     <action selector="calculateAmount" destination="A8y-Gu-AaS" eventType="touchUpInside" id="04J-O1-gqi"/>
+                                    <action selector="translate" destination="0EH-Bu-fSa" eventType="touchUpInside" id="FU1-20-uth"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0yX-1Q-Sqm">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0yX-1Q-Sqm">
                                 <rect key="frame" x="177.5" y="574" width="20" height="20"/>
                             </activityIndicatorView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLr-jJ-W1C">
@@ -47,11 +48,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fsf-Wv-8JA">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Fsf-Wv-8JA">
                                                         <rect key="frame" x="0.0" y="37" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="continue"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="0EH-Bu-fSa" id="vLh-uo-2qA"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -85,6 +89,7 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="0yX-1Q-Sqm" firstAttribute="centerX" secondItem="ORD-Ry-G6N" secondAttribute="centerX" id="7Xm-OQ-336"/>
                             <constraint firstItem="tCt-Sd-YgN" firstAttribute="width" secondItem="tCt-Sd-YgN" secondAttribute="height" multiplier="335:38" id="Fz2-Km-DmU"/>
@@ -98,6 +103,9 @@
                             <constraint firstItem="kCM-Nk-G0H" firstAttribute="trailing" secondItem="tCt-Sd-YgN" secondAttribute="trailing" constant="20" id="wom-T7-58P"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kCM-Nk-G0H"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="aJt-vD-TVF" appends="YES" id="FXh-1t-m7X"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Traduction" id="787-c4-UIX"/>
                     <connections>
@@ -105,10 +113,14 @@
                         <outlet property="textToTranslate" destination="Fsf-Wv-8JA" id="Y25-tK-aSq"/>
                         <outlet property="translateButton" destination="tCt-Sd-YgN" id="btK-d0-U0b"/>
                         <outlet property="translatedLabel" destination="GDl-Ir-DgU" id="zZu-z7-xRY"/>
-                        <outlet property="translatedTextField" destination="GDl-Ir-DgU" id="Jf0-xf-NkT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vfw-e8-U6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="aJt-vD-TVF">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="0EH-Bu-fSa" id="P7F-SR-09u"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-557" y="418"/>
         </scene>
