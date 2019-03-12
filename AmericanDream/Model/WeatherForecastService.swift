@@ -12,11 +12,12 @@ class WeatherForecastService {
     static var shared = WeatherForecastService()
     private init() {}
     private var task: URLSessionDataTask?
-    var weatherConditions: dataCurrentWeather?
+    var weatherConditionsNewYork: dataCurrentWeather?
+    var weatherConditionsCurrentPosition: dataCurrentWeather?
     
     static var urlApi = URL(string: "http://api.openweathermap.org/data/2.5/weather?id=5128581&units=metric&lang=fr&appid=8d2f72c4af31a1d3bfaaee4d236a4588")!
     
-    func  getCurrentWeatherConditions(callback: @escaping (Bool) -> Void) {
+    func  getCurrentWeatherConditions(whichLocation: WhichLocation,callback: @escaping (Bool) -> Void) {
 //        var request = URLRequest(url: WeatherForecastService.urlApi)
 //        request.httpMethod = "POST"
 //        let body = "id=5128581&units=metric&lang=fr&appid=8d2f72c4af31a1d3bfaaee4d236a4588"
@@ -40,11 +41,23 @@ class WeatherForecastService {
                     callback(false)
                     return
                 }
-                self.weatherConditions = conditions
+                if whichLocation == .NewYork {
+                    self.weatherConditionsNewYork = conditions
+                } else {
+                    self.weatherConditionsCurrentPosition = conditions
+                }
+                
                 callback(true)
             }
         })
         task?.resume()
+    }
+}
+
+extension WeatherForecastService {
+    enum WhichLocation {
+        case currentPosition
+        case NewYork
     }
 }
 

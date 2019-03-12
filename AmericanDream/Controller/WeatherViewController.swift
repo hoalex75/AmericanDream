@@ -22,9 +22,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sharedFromWeather.getCurrentWeatherConditions { (success) in
+        sharedFromWeather.getCurrentWeatherConditions(whichLocation: .NewYork) { (success) in
             if success {
-                guard let weatherCondtions = self.sharedFromWeather.weatherConditions else {
+                guard let weatherCondtions = self.sharedFromWeather.weatherConditionsNewYork else {
                     return
                 }
                 self.cityName.text = weatherCondtions.name
@@ -35,9 +35,13 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
         initializeLocation()
-        print("location : \(latitude) \(longitude)")
-        stopAcquiringLocation()
-        // Do any additional setup after loading the view.
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
+            self.stopAcquiringLocation()
+        }
+    }
+    
+    @IBAction func actualize() {
+        print("location : \(String(describing: latitude)) \(String(describing: longitude))")
     }
 }
 
