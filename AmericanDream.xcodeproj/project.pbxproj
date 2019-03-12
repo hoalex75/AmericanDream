@@ -14,6 +14,8 @@
 		FA4CCEB52232868E006C9967 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CCEB42232868E006C9967 /* FakeResponseData.swift */; };
 		FAA8F4892235778A0053A316 /* TranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8F4882235778A0053A316 /* TranslationViewController.swift */; };
 		FAA8F48B2235791A0053A316 /* TranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8F48A2235791A0053A316 /* TranslationService.swift */; };
+		FAA8F48F2237E91E0053A316 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8F48E2237E91E0053A316 /* WeatherViewController.swift */; };
+		FAA8F4912237EB920053A316 /* WeatherForecastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8F4902237EB920053A316 /* WeatherForecastService.swift */; };
 		FABB9AED222B372000D131E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB9AEC222B372000D131E0 /* AppDelegate.swift */; };
 		FABB9AEF222B372000D131E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB9AEE222B372000D131E0 /* ViewController.swift */; };
 		FABB9AF2222B372000D131E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABB9AF0222B372000D131E0 /* Main.storyboard */; };
@@ -42,6 +44,8 @@
 		FA4CCEB42232868E006C9967 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		FAA8F4882235778A0053A316 /* TranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationViewController.swift; sourceTree = "<group>"; };
 		FAA8F48A2235791A0053A316 /* TranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationService.swift; sourceTree = "<group>"; };
+		FAA8F48E2237E91E0053A316 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		FAA8F4902237EB920053A316 /* WeatherForecastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastService.swift; sourceTree = "<group>"; };
 		FABB9AE9222B372000D131E0 /* AmericanDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericanDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABB9AEC222B372000D131E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FABB9AEE222B372000D131E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 			children = (
 				FA4CCEA0222C14D1006C9967 /* ExchangeRateService.swift */,
 				FAA8F48A2235791A0053A316 /* TranslationService.swift */,
+				FAA8F4902237EB920053A316 /* WeatherForecastService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 				FABB9AEE222B372000D131E0 /* ViewController.swift */,
 				FABB9B02222B3BC700D131E0 /* ExchangeRateViewController.swift */,
 				FAA8F4882235778A0053A316 /* TranslationViewController.swift */,
+				FAA8F48E2237E91E0053A316 /* WeatherViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -262,9 +268,11 @@
 			files = (
 				FA4CCEA1222C14D1006C9967 /* ExchangeRateService.swift in Sources */,
 				FABB9B03222B3BC700D131E0 /* ExchangeRateViewController.swift in Sources */,
+				FAA8F4912237EB920053A316 /* WeatherForecastService.swift in Sources */,
 				FAA8F4892235778A0053A316 /* TranslationViewController.swift in Sources */,
 				FA4CCEB1222C3F98006C9967 /* VariousExtensions.swift in Sources */,
 				FABB9AEF222B372000D131E0 /* ViewController.swift in Sources */,
+				FAA8F48F2237E91E0053A316 /* WeatherViewController.swift in Sources */,
 				FAA8F48B2235791A0053A316 /* TranslationService.swift in Sources */,
 				FABB9AED222B372000D131E0 /* AppDelegate.swift in Sources */,
 			);

@@ -17,7 +17,7 @@ class TranslationService {
     func translate(textToTranslate: String, callback: @escaping (Bool, String?) -> Void) {
         var request = URLRequest(url: TranslationService.urlApi)
         request.httpMethod = "POST"
-        let body = "key=AIzaSyDaQLJNCHFuKw9XUTMSNcGIZWCCySTDiTA&q=\(textToTranslate)&target=fr&source=en&format=text"
+        let body = "key=AIzaSyDaQLJNCHFuKw9XUTMSNcGIZWCCySTDiTA&q=\(textToTranslate)&target=en&source=fr&format=text"
         request.httpBody = body.data(using: .utf8)
         let session = URLSession(configuration: .default)
         
@@ -36,7 +36,7 @@ class TranslationService {
                     callback(false,nil)
                     return
                 }
-                let textToTransmit = translation.data["translations"]![0]["translatedText"]!
+                let textToTransmit = translation.data.translations[0].translatedText
                 callback(true,textToTransmit)
             }
         }
@@ -46,11 +46,26 @@ class TranslationService {
 }
 
 struct DataFromGT: Decodable {
-    let data : [String : [[String:String]]]
+    let data: Translation
     
-    init(data: [String : [[String:String]]]) {
+    init(data: Translation){
         self.data = data
     }
 }
 
+struct Translation: Decodable {
+    let translations: [TranslatedText]
+    
+    init(translations: [TranslatedText]) {
+        self.translations = translations
+    }
+}
+
+struct TranslatedText: Decodable {
+    let translatedText: String
+    
+    init(translatedText: String) {
+        self.translatedText = translatedText
+    }
+}
 
