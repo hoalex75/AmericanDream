@@ -10,21 +10,26 @@ import Foundation
 
 class WeatherForecastService {
     static var shared = WeatherForecastService()
+    private static var newYorkId = "id=5128581"
+    private static var parisId = "id=2988507"
+
     private init() {}
     private var task: URLSessionDataTask?
     var weatherConditionsNewYork: dataCurrentWeather?
+    var weatherConditionsParis: dataCurrentWeather?
     var weatherConditionsCurrentPosition: dataCurrentWeather?
     
-    static var urlApi = URL(string: "http://api.openweathermap.org/data/2.5/weather?id=5128581&units=metric&lang=fr&appid=8d2f72c4af31a1d3bfaaee4d236a4588")!
+    private static var urlApi = "http://api.openweathermap.org/data/2.5/weather?units=metric&lang=fr&appid=8d2f72c4af31a1d3bfaaee4d236a4588"
     
-    func  getCurrentWeatherConditions(whichLocation: WhichLocation,callback: @escaping (Bool) -> Void) {
+    func  getCurrentWeatherConditions(whichLocation: WhichLocation,latitude: Double = 0, longitude: Double = 0,callback: @escaping (Bool) -> Void) {
 //        var request = URLRequest(url: WeatherForecastService.urlApi)
 //        request.httpMethod = "POST"
 //        let body = "id=5128581&units=metric&lang=fr&appid=8d2f72c4af31a1d3bfaaee4d236a4588"
 //        request.httpBody = body.data(using: .utf8)
+        let urlOnWhichRequest = urlToRequest(whichLocation: whichLocation, latitude: latitude, longitude: longitude)
         let session = URLSession(configuration: .default)
         task?.cancel()
-        task = session.dataTask(with: WeatherForecastService.urlApi, completionHandler: { (data, response, error) in
+        task = session.dataTask(with: urlOnWhichRequest, completionHandler: { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
                     print("ici1, \(String(describing: error))")
@@ -37,13 +42,17 @@ class WeatherForecastService {
                     return
                 }
                 guard let conditions = try? JSONDecoder().decode(dataCurrentWeather.self, from: data) else {
-                    print("ici3")
+                    print("ici3 + \(whichLocation)")
                     callback(false)
                     return
                 }
-                if whichLocation == .NewYork {
+                
+                switch whichLocation {
+                case .Paris:
+                    self.weatherConditionsParis = conditions
+                case .NewYork:
                     self.weatherConditionsNewYork = conditions
-                } else {
+                case .currentPosition:
                     self.weatherConditionsCurrentPosition = conditions
                 }
                 
@@ -54,10 +63,27 @@ class WeatherForecastService {
     }
 }
 
+
 extension WeatherForecastService {
     enum WhichLocation {
         case currentPosition
         case NewYork
+        case Paris
+    }
+    
+    private func urlToRequest(whichLocation: WhichLocation,latitude: Double, longitude: Double) -> URL {
+        var url: URL
+        switch whichLocation {
+        case .NewYork:
+            url = URL(string: WeatherForecastService.urlApi + "&\(WeatherForecastService.newYorkId)")!
+        case .Paris:
+            url = URL(string: WeatherForecastService.urlApi + "&\(WeatherForecastService.parisId)")!
+        case .currentPosition:
+            let stringURL = WeatherForecastService.urlApi + "&lat=\(latitude)&lon=\(longitude)"
+            print(stringURL)
+            url = URL(string: stringURL)!
+        }
+        return url
     }
 }
 

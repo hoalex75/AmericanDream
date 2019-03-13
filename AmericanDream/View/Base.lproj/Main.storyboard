@@ -367,6 +367,18 @@
                                     <action selector="actualize" destination="BYZ-38-t0r" eventType="touchUpInside" id="wa8-HL-UoR"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-Cf-7WJ">
+                                <rect key="frame" x="58" y="479" width="260" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="New York"/>
+                                    <segment title="Paris"/>
+                                    <segment title="Ville Actuelle"/>
+                                </segments>
+                                <connections>
+                                    <action selector="cityChanged" destination="BYZ-38-t0r" eventType="valueChanged" id="IUS-gF-QFL"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -387,6 +399,7 @@
                     <tabBarItem key="tabBarItem" title="Météo" id="zA7-4q-DMd"/>
                     <connections>
                         <outlet property="cityName" destination="vjk-co-7nr" id="0b9-FO-cwR"/>
+                        <outlet property="citySegmentedControl" destination="k6Y-Cf-7WJ" id="V7D-9o-9j7"/>
                         <outlet property="currentTemperatureLabel" destination="d4a-oS-hko" id="zoS-6h-ITc"/>
                         <outlet property="maxTemperatureLabel" destination="2ZL-22-2gi" id="PjB-Ah-Xdd"/>
                         <outlet property="minTemperatureLabel" destination="j2n-Pf-hvd" id="hi0-p0-HLf"/>
@@ -395,7 +408,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-559" y="1139"/>
+            <point key="canvasLocation" x="-559.20000000000005" y="1138.3808095952024"/>
         </scene>
     </scenes>
 </document>

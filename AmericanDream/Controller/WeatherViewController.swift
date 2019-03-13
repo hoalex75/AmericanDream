@@ -16,6 +16,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var currentTemperatureLabel: UILabel!
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
+    @IBOutlet weak var citySegmentedControl: UISegmentedControl!
+    
+    
     private var locationManager = CLLocationManager()
     private var sharedFromWeather = WeatherForecastService.shared
     private var latitude, longitude: CLLocationDegrees?
@@ -27,21 +30,46 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                 guard let weatherCondtions = self.sharedFromWeather.weatherConditionsNewYork else {
                     return
                 }
-                self.cityName.text = weatherCondtions.name
-                self.weatherConditionsLabel.text = weatherCondtions.weather[0].description.capitalized
-                self.currentTemperatureLabel.text = "\(weatherCondtions.main.temp) °C"
-                self.minTemperatureLabel.text = "\(weatherCondtions.main.tempMin) °C"
-                self.maxTemperatureLabel.text = "\(weatherCondtions.main.tempMax) °C"
+                self.displayWeatherConditions(weatherConditions: weatherCondtions)
+                self.sharedFromWeather.getCurrentWeatherConditions(whichLocation: .Paris) { (successParis) in
+                    if successParis {
+                        self.initializeLocation()
+                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
+                            self.stopAcquiringLocation()
+                            self.sharedFromWeather.getCurrentWeatherConditions(whichLocation: .currentPosition, latitude: Double(self.latitude!), longitude: Double(self.longitude!), callback: { (successCurrent) in
+                                if successCurrent {}
+                            })
+                        }
+                    }
+                }
             }
         }
-        initializeLocation()
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
-            self.stopAcquiringLocation()
-        }
+        
     }
     
     @IBAction func actualize() {
         print("location : \(String(describing: latitude)) \(String(describing: longitude))")
+    }
+    
+    @IBAction func cityChanged() {
+        switch citySegmentedControl.selectedSegmentIndex {
+            case 0:
+                displayWeatherConditions(weatherConditions: sharedFromWeather.weatherConditionsNewYork!)
+            case 1:
+                displayWeatherConditions(weatherConditions: sharedFromWeather.weatherConditionsParis!)
+            case 2:
+                displayWeatherConditions(weatherConditions: sharedFromWeather.weatherConditionsCurrentPosition!)
+            default:
+                break
+        }
+    }
+    
+    private func displayWeatherConditions(weatherConditions: dataCurrentWeather) {
+        cityName.text = weatherConditions.name
+        weatherConditionsLabel.text = weatherConditions.weather[0].description.capitalized
+        currentTemperatureLabel.text = "\(weatherConditions.main.temp) °C"
+        minTemperatureLabel.text = "\(weatherConditions.main.tempMin) °C"
+        maxTemperatureLabel.text = "\(weatherConditions.main.tempMax) °C"
     }
 }
 
