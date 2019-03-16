@@ -107,7 +107,7 @@
                             <outletCollection property="gestureRecognizers" destination="aJt-vD-TVF" appends="YES" id="FXh-1t-m7X"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Traduction" id="787-c4-UIX"/>
+                    <tabBarItem key="tabBarItem" title="Traduction" image="Translate" id="787-c4-UIX"/>
                     <connections>
                         <outlet property="activityIndicator" destination="0yX-1Q-Sqm" id="WBx-bn-qxE"/>
                         <outlet property="textToTranslate" destination="Fsf-Wv-8JA" id="Y25-tK-aSq"/>
@@ -396,7 +396,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Météo" id="zA7-4q-DMd"/>
+                    <tabBarItem key="tabBarItem" title="Météo" image="Weather" id="zA7-4q-DMd"/>
                     <connections>
                         <outlet property="cityName" destination="vjk-co-7nr" id="0b9-FO-cwR"/>
                         <outlet property="citySegmentedControl" destination="k6Y-Cf-7WJ" id="V7D-9o-9j7"/>
@@ -411,4 +411,8 @@
             <point key="canvasLocation" x="-559.20000000000005" y="1138.3808095952024"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Translate" width="40" height="24"/>
+        <image name="Weather" width="25" height="25"/>
+    </resources>
 </document>

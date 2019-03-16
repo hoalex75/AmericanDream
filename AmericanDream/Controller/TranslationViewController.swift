@@ -19,6 +19,7 @@ class TranslationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         translatedLabel.text = ""
+        setBackgroundImage()
         // Do any additional setup after loading the view.
     }
     
@@ -62,5 +63,13 @@ extension TranslationViewController: UITextFieldDelegate {
         } else {
             translateText()
         }
+    }
+}
+
+extension TranslationViewController: BackgroundImage {
+    
+    private func setBackgroundImage() {
+        let backgroundImage = getBackgroundImage(imageName: "translationBackground")
+        self.view.insertSubview(backgroundImage, at: 0)
     }
 }

@@ -25,6 +25,15 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBackgroundImage()
+//        R
+//        E
+//        F
+//        A
+//        C
+//        T
+//        O
+// créer bouton rafraichir
         sharedFromWeather.getCurrentWeatherConditions(whichLocation: .NewYork) { (success) in
             if success {
                 guard let weatherCondtions = self.sharedFromWeather.weatherConditionsNewYork else {
@@ -36,7 +45,11 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                         self.initializeLocation()
                         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
                             self.stopAcquiringLocation()
-                            self.sharedFromWeather.getCurrentWeatherConditions(whichLocation: .currentPosition, latitude: Double(self.latitude!), longitude: Double(self.longitude!), callback: { (successCurrent) in
+                            guard let latitudeToUse = self.latitude,let longitudeToUse = self.longitude else {
+                                //alert here
+                                return
+                            }
+                            self.sharedFromWeather.getCurrentWeatherConditions(whichLocation: .currentPosition, latitude: Double(latitudeToUse), longitude: Double(longitudeToUse), callback: { (successCurrent) in
                                 if successCurrent {}
                             })
                         }
@@ -58,7 +71,11 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             case 1:
                 displayWeatherConditions(weatherConditions: sharedFromWeather.weatherConditionsParis!)
             case 2:
-                displayWeatherConditions(weatherConditions: sharedFromWeather.weatherConditionsCurrentPosition!)
+                guard let weatherConditions = sharedFromWeather.weatherConditionsCurrentPosition else {
+                    //display alert
+                    return
+                }
+                displayWeatherConditions(weatherConditions: weatherConditions)
             default:
                 break
         }
@@ -84,12 +101,22 @@ extension WeatherViewController {
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
     }
     
     private func stopAcquiringLocation() {
-        locationManager.stopUpdatingLocation()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.stopUpdatingLocation()
+        }
+    }
+}
+
+extension WeatherViewController: BackgroundImage {
+    
+    private func setBackgroundImage() {
+        let backgroundImage = getBackgroundImage(imageName: "weatherBackground")
+        self.view.insertSubview(backgroundImage, at: 0)
     }
 }

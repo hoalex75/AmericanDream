@@ -17,6 +17,7 @@ class ExchangeRateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBackgroundImage()
         toggleActivityIndicator(shown: true)
         ExchangeRateService.shared.getExchangeRate { (success, rate) in
             if success {
@@ -61,5 +62,13 @@ extension ExchangeRateViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension ExchangeRateViewController: BackgroundImage {
+    
+    private func setBackgroundImage() {
+        let backgroundImage = getBackgroundImage(imageName: "exchangeBackground")
+        self.view.insertSubview(backgroundImage, at: 0)
     }
 }
