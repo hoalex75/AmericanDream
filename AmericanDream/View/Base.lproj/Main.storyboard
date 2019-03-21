@@ -224,7 +224,7 @@
                             <outletCollection property="gestureRecognizers" destination="hB7-ek-pnF" appends="YES" id="Zyg-mf-xh1"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Taux de change" id="egL-a1-mIp"/>
+                    <tabBarItem key="tabBarItem" title="Taux de change" image="Exchange Rate" id="egL-a1-mIp"/>
                     <connections>
                         <outlet property="activityIndicator" destination="ciM-do-LNb" id="5oC-nE-h8l"/>
                         <outlet property="amountToExchange" destination="PfN-Uy-ZXR" id="3MK-7V-fIB"/>
@@ -412,6 +412,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Exchange Rate" width="23" height="12"/>
         <image name="Translate" width="40" height="24"/>
         <image name="Weather" width="25" height="25"/>
     </resources>

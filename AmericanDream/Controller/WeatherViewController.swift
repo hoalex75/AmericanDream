@@ -26,58 +26,70 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImage()
-//        R
-//        E
-//        F
-//        A
-//        C
-//        T
-//        O
 // créer bouton rafraichir
+        requestWeatherNewYork(display: true)
+        
+    }
+    
+    private func requestWeatherNewYork(display: Bool) {
         sharedFromWeather.getCurrentWeatherConditions(whichLocation: .NewYork) { (success) in
             if success {
                 guard let weatherCondtions = self.sharedFromWeather.weatherConditionsNewYork else {
                     return
                 }
-                self.displayWeatherConditions(weatherConditions: weatherCondtions)
-                self.sharedFromWeather.getCurrentWeatherConditions(whichLocation: .Paris) { (successParis) in
-                    if successParis {
-                        self.initializeLocation()
-                        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
-                            self.stopAcquiringLocation()
-                            guard let latitudeToUse = self.latitude,let longitudeToUse = self.longitude else {
-                                //alert here
-                                return
-                            }
-                            self.sharedFromWeather.getCurrentWeatherConditions(whichLocation: .currentPosition, latitude: Double(latitudeToUse), longitude: Double(longitudeToUse), callback: { (successCurrent) in
-                                if successCurrent {}
-                            })
-                        }
-                    }
+                if display {
+                    self.displayWeatherConditions(weatherConditions: weatherCondtions)
                 }
+                self.requestWeatherParis()
             }
         }
-        
+    }
+    
+    private func requestWeatherParis() {
+        sharedFromWeather.getCurrentWeatherConditions(whichLocation: .Paris) { (successParis) in
+            if successParis {
+                self.requestWeatherCurrentPosition()
+            }
+        }
+    }
+    
+    private func requestWeatherCurrentPosition() {
+        initializeLocation()
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
+            self.stopAcquiringLocation()
+            guard let latitudeToUse = self.latitude,let longitudeToUse = self.longitude else {
+                //alert here
+                return
+            }
+            self.sharedFromWeather.getCurrentWeatherConditions(whichLocation: .currentPosition, latitude: Double(latitudeToUse), longitude: Double(longitudeToUse), callback: { (successCurrent) in
+                if successCurrent {}
+            })
+        }
     }
     
     @IBAction func actualize() {
-        print("location : \(String(describing: latitude)) \(String(describing: longitude))")
+        requestWeatherNewYork(display: false)
+        displayCorrespondingWeather()
     }
     
     @IBAction func cityChanged() {
+        displayCorrespondingWeather()
+    }
+    
+    private func displayCorrespondingWeather() {
         switch citySegmentedControl.selectedSegmentIndex {
-            case 0:
-                displayWeatherConditions(weatherConditions: sharedFromWeather.weatherConditionsNewYork!)
-            case 1:
-                displayWeatherConditions(weatherConditions: sharedFromWeather.weatherConditionsParis!)
-            case 2:
-                guard let weatherConditions = sharedFromWeather.weatherConditionsCurrentPosition else {
-                    //display alert
-                    return
-                }
-                displayWeatherConditions(weatherConditions: weatherConditions)
-            default:
-                break
+        case 0:
+            displayWeatherConditions(weatherConditions: sharedFromWeather.weatherConditionsNewYork!)
+        case 1:
+            displayWeatherConditions(weatherConditions: sharedFromWeather.weatherConditionsParis!)
+        case 2:
+            guard let weatherConditions = sharedFromWeather.weatherConditionsCurrentPosition else {
+                //display alert
+                return
+            }
+            displayWeatherConditions(weatherConditions: weatherConditions)
+        default:
+            break
         }
     }
     
