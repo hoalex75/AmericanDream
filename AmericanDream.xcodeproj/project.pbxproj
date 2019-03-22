@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA0C9C78223D1DC4001F13D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA0C9C77223D1DC4001F13D3 /* Assets.xcassets */; };
-		FA0C9C7A223D1F48001F13D3 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0C9C79223D1F48001F13D3 /* BackgroundImage.swift */; };
+		FA0C9C7A223D1F48001F13D3 /* FunctionsForViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0C9C79223D1F48001F13D3 /* FunctionsForViewControllers.swift */; };
 		FA4CCEA1222C14D1006C9967 /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CCEA0222C14D1006C9967 /* ExchangeRateService.swift */; };
 		FA4CCEA9222C284C006C9967 /* AmericanDreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CCEA8222C284C006C9967 /* AmericanDreamTests.swift */; };
 		FA4CCEB1222C3F98006C9967 /* VariousExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CCEB0222C3F98006C9967 /* VariousExtensions.swift */; };
@@ -37,7 +37,7 @@
 
 /* Begin PBXFileReference section */
 		FA0C9C77223D1DC4001F13D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FA0C9C79223D1F48001F13D3 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
+		FA0C9C79223D1F48001F13D3 /* FunctionsForViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionsForViewControllers.swift; sourceTree = "<group>"; };
 		FA4CCEA0222C14D1006C9967 /* ExchangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
 		FA4CCEA6222C284C006C9967 /* AmericanDreamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmericanDreamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA4CCEA8222C284C006C9967 /* AmericanDreamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericanDreamTests.swift; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 				FABB9B02222B3BC700D131E0 /* ExchangeRateViewController.swift */,
 				FAA8F4882235778A0053A316 /* TranslationViewController.swift */,
 				FAA8F48E2237E91E0053A316 /* WeatherViewController.swift */,
-				FA0C9C79223D1F48001F13D3 /* BackgroundImage.swift */,
+				FA0C9C79223D1F48001F13D3 /* FunctionsForViewControllers.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -272,7 +272,7 @@
 				FA4CCEA1222C14D1006C9967 /* ExchangeRateService.swift in Sources */,
 				FABB9B03222B3BC700D131E0 /* ExchangeRateViewController.swift in Sources */,
 				FAA8F4912237EB920053A316 /* WeatherForecastService.swift in Sources */,
-				FA0C9C7A223D1F48001F13D3 /* BackgroundImage.swift in Sources */,
+				FA0C9C7A223D1F48001F13D3 /* FunctionsForViewControllers.swift in Sources */,
 				FAA8F4892235778A0053A316 /* TranslationViewController.swift in Sources */,
 				FA4CCEB1222C3F98006C9967 /* VariousExtensions.swift in Sources */,
 				FABB9AEF222B372000D131E0 /* ViewController.swift in Sources */,

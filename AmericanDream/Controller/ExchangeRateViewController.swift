@@ -22,6 +22,8 @@ class ExchangeRateViewController: UIViewController {
         ExchangeRateService.shared.getExchangeRate { (success, rate) in
             if success {
                 self.exchangeRate.text = "\(rate!)"
+            } else {
+                self.createAndDisplayAlerts(message: "Erreur de connection réseau, échec de l'obtention du taux de change du jour.")
             }
             self.toggleActivityIndicator(shown: false)
         }
@@ -41,15 +43,6 @@ class ExchangeRateViewController: UIViewController {
         calculateButton.isHidden = shown
         activityIndicator.isHidden = !shown
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -65,10 +58,15 @@ extension ExchangeRateViewController: UITextFieldDelegate {
     }
 }
 
-extension ExchangeRateViewController: BackgroundImage {
+extension ExchangeRateViewController: FunctionsForViewControllers {
     
     private func setBackgroundImage() {
         let backgroundImage = getBackgroundImage(imageName: "exchangeBackground")
         self.view.insertSubview(backgroundImage, at: 0)
+    }
+    
+    private func createAndDisplayAlerts(message: String){
+        let alertVC = createAlert(message: message)
+        present(alertVC, animated: true, completion: nil)
     }
 }

@@ -359,16 +359,18 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uc-ij-lQo">
-                                <rect key="frame" x="20" y="568" width="335" height="30"/>
-                                <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uc-ij-lQo">
+                                <rect key="frame" x="105" y="550" width="165" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0uc-ij-lQo" secondAttribute="height" multiplier="55:16" id="O6h-ha-sYp"/>
+                                </constraints>
+                                <state key="normal" image="ButtonBlue"/>
                                 <connections>
                                     <action selector="actualize" destination="BYZ-38-t0r" eventType="touchUpInside" id="wa8-HL-UoR"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-Cf-7WJ">
-                                <rect key="frame" x="58" y="479" width="260" height="29"/>
+                                <rect key="frame" x="57" y="446" width="260" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="New York"/>
@@ -385,10 +387,9 @@
                             <constraint firstItem="lgA-e2-Mpo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7ER-WN-aTs"/>
                             <constraint firstItem="hqY-rh-xbk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Jct-3F-icr"/>
                             <constraint firstItem="vjk-co-7nr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KLI-J7-FCV"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0uc-ij-lQo" secondAttribute="trailing" constant="20" id="NPd-r7-cFE"/>
-                            <constraint firstItem="0uc-ij-lQo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="UHf-Cj-CJ0"/>
                             <constraint firstItem="vjk-co-7nr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="UM6-Jp-yy0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lgA-e2-Mpo" secondAttribute="trailing" constant="20" id="a3P-0v-QM2"/>
+                            <constraint firstItem="0uc-ij-lQo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cwg-tW-YcH"/>
                             <constraint firstItem="hqY-rh-xbk" firstAttribute="top" secondItem="vjk-co-7nr" secondAttribute="bottom" constant="10" id="jyn-wf-kbm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hqY-rh-xbk" secondAttribute="trailing" constant="20" id="ps1-3n-DbM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0uc-ij-lQo" secondAttribute="bottom" constant="20" id="rFT-Gy-NPp"/>
@@ -412,6 +413,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ButtonBlue" width="165" height="48"/>
         <image name="Exchange Rate" width="23" height="12"/>
         <image name="Translate" width="40" height="24"/>
         <image name="Weather" width="25" height="25"/>

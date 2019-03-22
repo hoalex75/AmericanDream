@@ -8,15 +8,23 @@
 
 import UIKit
 
-protocol BackgroundImage {
+protocol FunctionsForViewControllers {
     func getBackgroundImage(imageName: String) -> UIImageView
+    func createAlert(message: String) -> UIAlertController
 }
 
-extension BackgroundImage {
+extension FunctionsForViewControllers {
     func getBackgroundImage(imageName: String) -> UIImageView{
         let backgroundImage = UIImageView(frame : UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: imageName)
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
         return backgroundImage
+    }
+    
+    func createAlert(message: String) -> UIAlertController {
+        let alertVC = UIAlertController(title: "Erreur", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alertVC.addAction(action)
+        return alertVC
     }
 }

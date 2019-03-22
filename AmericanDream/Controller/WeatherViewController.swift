@@ -26,7 +26,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImage()
-// créer bouton rafraichir
         requestWeatherNewYork(display: true)
         
     }
@@ -35,12 +34,15 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         sharedFromWeather.getCurrentWeatherConditions(whichLocation: .NewYork) { (success) in
             if success {
                 guard let weatherCondtions = self.sharedFromWeather.weatherConditionsNewYork else {
+                    self.createAndDisplayAlerts(message: "Erreur serveur, le serveur a été joint mais a envoyé une réponse incorrecte.")
                     return
                 }
                 if display {
                     self.displayWeatherConditions(weatherConditions: weatherCondtions)
                 }
                 self.requestWeatherParis()
+            } else {
+                self.createAndDisplayAlerts(message: "Erreur de connection réseau, échec de l'obtention de la météo NewYorkaise.")
             }
         }
     }
@@ -49,6 +51,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         sharedFromWeather.getCurrentWeatherConditions(whichLocation: .Paris) { (successParis) in
             if successParis {
                 self.requestWeatherCurrentPosition()
+            } else {
+                self.createAndDisplayAlerts(message: "Erreur de connection réseau, échec de l'obtention de la météo parisienne.")
             }
         }
     }
@@ -58,7 +62,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
             self.stopAcquiringLocation()
             guard let latitudeToUse = self.latitude,let longitudeToUse = self.longitude else {
-                //alert here
+                self.createAndDisplayAlerts(message: "Erreur lors de l'acquisition de votre position, impossible d'afficher la météo locale.")
                 return
             }
             self.sharedFromWeather.getCurrentWeatherConditions(whichLocation: .currentPosition, latitude: Double(latitudeToUse), longitude: Double(longitudeToUse), callback: { (successCurrent) in
@@ -125,10 +129,15 @@ extension WeatherViewController {
     }
 }
 
-extension WeatherViewController: BackgroundImage {
+extension WeatherViewController: FunctionsForViewControllers {
     
     private func setBackgroundImage() {
         let backgroundImage = getBackgroundImage(imageName: "weatherBackground")
         self.view.insertSubview(backgroundImage, at: 0)
+    }
+    
+    private func createAndDisplayAlerts(message: String){
+        let alertVC = createAlert(message: message)
+        present(alertVC, animated: true, completion: nil)
     }
 }

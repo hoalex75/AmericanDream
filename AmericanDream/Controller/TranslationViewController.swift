@@ -36,6 +36,8 @@ class TranslationViewController: UIViewController {
         TranslationService.shared.translate(textToTranslate: text) { (success, textReceived) in
             if success, let textReceived = textReceived {
                 self.translatedLabel.text = textReceived
+            } else {
+                self.createAndDisplayAlerts(message: "Erreur de connection réseau, échec de l'obtention de la traduction.")
             }
             self.toggleActivityIndicator(shown: false)
         }
@@ -66,10 +68,15 @@ extension TranslationViewController: UITextFieldDelegate {
     }
 }
 
-extension TranslationViewController: BackgroundImage {
+extension TranslationViewController: FunctionsForViewControllers {
     
     private func setBackgroundImage() {
         let backgroundImage = getBackgroundImage(imageName: "translationBackground")
         self.view.insertSubview(backgroundImage, at: 0)
+    }
+    
+    private func createAndDisplayAlerts(message: String){
+        let alertVC = createAlert(message: message)
+        present(alertVC, animated: true, completion: nil)
     }
 }
