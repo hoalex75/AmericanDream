@@ -9,7 +9,7 @@
 import Foundation
 
 class FakeResponseData {
-    static var resource: String {
+    private static var resource: String {
         switch FakeResponseData.requestType! {
         case .exchangeRate:
             return "ExchangeRate"
@@ -38,7 +38,7 @@ class FakeResponseData {
     
     
     
-    class ExchangeRateError: Error {}
-    static let error = ExchangeRateError()
+    class RequestError: Error {}
+    static let error = RequestError()
     
 }

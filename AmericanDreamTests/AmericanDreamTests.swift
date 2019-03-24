@@ -41,10 +41,55 @@ class ExchangeRateServiceTestCase: XCTestCase {
         let sessionFake = URLSessionFake(data: FakeResponseData.correctData, response: FakeResponseData.responseOK, error: nil)
         let exchangeRateService = ExchangeRateService(session: sessionFake)
         
+        let expectation = XCTestExpectation(description: "Wait for Queue Change")
         exchangeRateService.getExchangeRate { (success, rate) in
             XCTAssert(success)
             XCTAssertEqual(rate, 1.12183)
+            expectation.fulfill()
         }
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    func testExchangeServiceWithError() {
+        FakeResponseData.requestType = FakeResponseData.RequestType.exchangeRate
+        let sessionFake = URLSessionFake(data: FakeResponseData.correctData, response: FakeResponseData.responseOK, error: FakeResponseData.error)
+        let exchangeRateService = ExchangeRateService(session: sessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for Queue Change")
+        exchangeRateService.getExchangeRate { (success, rate) in
+            XCTAssert(!success)
+            XCTAssertNil(rate)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    func testExchangeServiceWithBadResponse() {
+        FakeResponseData.requestType = FakeResponseData.RequestType.exchangeRate
+        let sessionFake = URLSessionFake(data: FakeResponseData.correctData, response: FakeResponseData.responseKO, error: nil)
+        let exchangeRateService = ExchangeRateService(session: sessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for Queue Change")
+        exchangeRateService.getExchangeRate { (success, rate) in
+            XCTAssert(!success)
+            XCTAssertNil(rate)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    func testExchangeServiceWithIncorrectDatas() {
+        FakeResponseData.requestType = FakeResponseData.RequestType.exchangeRate
+        let sessionFake = URLSessionFake(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOK, error: nil)
+        let exchangeRateService = ExchangeRateService(session: sessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for Queue Change")
+        exchangeRateService.getExchangeRate { (success, rate) in
+            XCTAssert(!success)
+            XCTAssertNil(rate)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
     }
     
     // MARK: -Weather Services
@@ -63,8 +108,51 @@ class ExchangeRateServiceTestCase: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
     
+    func testWeatherServiceWithError() {
+        FakeResponseData.requestType = .weather
+        let sessionFake = URLSessionFake(data: FakeResponseData.correctData, response: FakeResponseData.responseOK, error: FakeResponseData.error)
+        let weatherService = WeatherForecastService(session: sessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for Queue Change")
+        weatherService.getCurrentWeatherConditions(whichLocation: .NewYork) { (success) in
+            XCTAssert(!success)
+            XCTAssertNil(weatherService.weatherConditionsNewYork)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    func testWeatherServiceWithBadResponse() {
+        FakeResponseData.requestType = .weather
+        let sessionFake = URLSessionFake(data: FakeResponseData.correctData, response: FakeResponseData.responseKO, error: nil)
+        let weatherService = WeatherForecastService(session: sessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for Queue Change")
+        weatherService.getCurrentWeatherConditions(whichLocation: .NewYork) { (success) in
+            XCTAssert(!success)
+            XCTAssertNil(weatherService.weatherConditionsNewYork)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    func testWeatherServiceWithIncorrectDatas() {
+        FakeResponseData.requestType = .weather
+        let sessionFake = URLSessionFake(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOK, error: nil)
+        let weatherService = WeatherForecastService(session: sessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for Queue Change")
+        weatherService.getCurrentWeatherConditions(whichLocation: .NewYork) { (success) in
+            XCTAssert(!success)
+            XCTAssertNil(weatherService.weatherConditionsNewYork)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    
     // MARK: -Translation Services
-    func testTranslationWithCorrectDatas(){
+    func testTranslationServiceWithCorrectDatas(){
         FakeResponseData.requestType = .translation
         let sessionFake = URLSessionFake(data: FakeResponseData.correctData, response: FakeResponseData.responseOK, error: nil)
         let translationService = TranslationService(session: sessionFake)
@@ -77,6 +165,48 @@ class ExchangeRateServiceTestCase: XCTestCase {
             expectation.fulfill()
         }
         
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    func textTranslationServiceWithErrors() {
+        FakeResponseData.requestType = .translation
+        let sessionFake = URLSessionFake(data: FakeResponseData.correctData, response: FakeResponseData.responseOK, error: FakeResponseData.error)
+        let translationService = TranslationService(session: sessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        translationService.translate(textToTranslate: "Tu es nerveux Jack !") { (success, translatedText) in
+            XCTAssert(!success)
+            XCTAssertNil(translatedText)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    func textTranslationServiceWithBadResponse() {
+        FakeResponseData.requestType = .translation
+        let sessionFake = URLSessionFake(data: FakeResponseData.correctData, response: FakeResponseData.responseKO, error: nil)
+        let translationService = TranslationService(session: sessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        translationService.translate(textToTranslate: "Tu es nerveux Jack !") { (success, translatedText) in
+            XCTAssert(!success)
+            XCTAssertNil(translatedText)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    func textTranslationServiceWithIncorrectDatas() {
+        FakeResponseData.requestType = .translation
+        let sessionFake = URLSessionFake(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOK, error: nil)
+        let translationService = TranslationService(session: sessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        translationService.translate(textToTranslate: "Tu es nerveux Jack !") { (success, translatedText) in
+            XCTAssert(!success)
+            XCTAssertNil(translatedText)
+            expectation.fulfill()
+        }
         wait(for: [expectation], timeout: 0.1)
     }
 }
