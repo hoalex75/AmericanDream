@@ -9,10 +9,19 @@
 import Foundation
 
 class FakeResponseData {
-    var resource: String
+    static var resource: String {
+        switch FakeResponseData.requestType! {
+        case .exchangeRate:
+            return "ExchangeRate"
+        case .weather:
+            return "Weather"
+        case .translation:
+            return "Translation"
+        }
+    }
     static var correctData: Data {
         let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "ExchangeRate", withExtension: "json")
+        let url = bundle.url(forResource: FakeResponseData.resource, withExtension: "json")
         let data = try! Data(contentsOf: url!)
         return data
     }
@@ -25,17 +34,9 @@ class FakeResponseData {
     
     static let responseOK = HTTPURLResponse(url: URL(string: "http://www.openclassrooms.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)
     static let responseKO = HTTPURLResponse(url: URL(string: "http://www.openclassrooms.com")!, statusCode: 500, httpVersion: nil, headerFields: nil)
+    static var requestType: RequestType?
     
-    init(type: RequestType) {
-        switch type {
-        case .exchangeRate:
-            resource = "ExchangeRate"
-        case .weather:
-            resource = "Weather"
-        case .translation:
-            resource = "Translation"
-        }
-    }
+    
     
     class ExchangeRateError: Error {}
     static let error = ExchangeRateError()

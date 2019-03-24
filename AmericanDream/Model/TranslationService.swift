@@ -13,13 +13,18 @@ class TranslationService {
     private static let urlApi = URL(string: "https://translation.googleapis.com/language/translate/v2")!
     private init() {}
     private var task: URLSessionDataTask?
+    private var session = URLSession(configuration: .default)
+    
+    init(session: URLSession){
+        self.session = session
+    }
     
     func translate(textToTranslate: String, callback: @escaping (Bool, String?) -> Void) {
         var request = URLRequest(url: TranslationService.urlApi)
         request.httpMethod = "POST"
         let body = "key=AIzaSyDaQLJNCHFuKw9XUTMSNcGIZWCCySTDiTA&q=\(textToTranslate)&target=en&source=fr&format=text"
         request.httpBody = body.data(using: .utf8)
-        let session = URLSession(configuration: .default)
+        
         
         task?.cancel()
         task = session.dataTask(with: request) { (data, response, error) in

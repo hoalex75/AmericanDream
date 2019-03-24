@@ -16,6 +16,10 @@ class ExchangeRateService {
     private init() {}
     private var task: URLSessionDataTask?
     var rate : Double?
+    private var session = URLSession(configuration: .default)
+    init(session: URLSession){
+        self.session = session
+    }
     
     func getExchangeRate(callback: @escaping (Bool,Double?) -> Void) {
 //        var request = URLRequest(url: ExchangeRateService.urlApi)
@@ -23,7 +27,7 @@ class ExchangeRateService {
 //        let body = "access_key=\(ExchangeRateService.apiKey)&symbols=usd"
 //        request.httpBody = body.data(using: .utf8)
         
-        let session = URLSession(configuration: .default)
+        
         task?.cancel()
         task = session.dataTask(with: ExchangeRateService.urlApi) { (data, response, error) in
             DispatchQueue.main.async {

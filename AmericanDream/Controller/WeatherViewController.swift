@@ -17,6 +17,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var minTemperatureLabel: UILabel!
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     @IBOutlet weak var citySegmentedControl: UISegmentedControl!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var refreshButton: UIButton!
     
     
     private var locationManager = CLLocationManager()
@@ -31,6 +33,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func requestWeatherNewYork(display: Bool) {
+        toggleActivityIndicator(shown: true)
         sharedFromWeather.getCurrentWeatherConditions(whichLocation: .NewYork) { (success) in
             if success {
                 guard let weatherCondtions = self.sharedFromWeather.weatherConditionsNewYork else {
@@ -43,6 +46,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                 self.requestWeatherParis()
             } else {
                 self.createAndDisplayAlerts(message: "Erreur de connection réseau, échec de l'obtention de la météo NewYorkaise.")
+                self.toggleActivityIndicator(shown: false)
             }
         }
     }
@@ -53,6 +57,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                 self.requestWeatherCurrentPosition()
             } else {
                 self.createAndDisplayAlerts(message: "Erreur de connection réseau, échec de l'obtention de la météo parisienne.")
+                self.toggleActivityIndicator(shown: false)
             }
         }
     }
@@ -67,8 +72,14 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             }
             self.sharedFromWeather.getCurrentWeatherConditions(whichLocation: .currentPosition, latitude: Double(latitudeToUse), longitude: Double(longitudeToUse), callback: { (successCurrent) in
                 if successCurrent {}
+                self.toggleActivityIndicator(shown: false)
             })
         }
+    }
+    
+    private func toggleActivityIndicator(shown: Bool) {
+        refreshButton.isHidden = shown
+        activityIndicator.isHidden = !shown
     }
     
     @IBAction func actualize() {
@@ -83,12 +94,20 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     private func displayCorrespondingWeather() {
         switch citySegmentedControl.selectedSegmentIndex {
         case 0:
-            displayWeatherConditions(weatherConditions: sharedFromWeather.weatherConditionsNewYork!)
+            guard let weatherConditions = sharedFromWeather.weatherConditionsNewYork else {
+                createAndDisplayAlerts(message: "Vérifiez bien que vous soyez bien connecté à internet pour pouvoir obtenir la météo newyorkaise.")
+                return
+            }
+            displayWeatherConditions(weatherConditions: weatherConditions)
         case 1:
-            displayWeatherConditions(weatherConditions: sharedFromWeather.weatherConditionsParis!)
+            guard let weatherConditions = sharedFromWeather.weatherConditionsParis else {
+                createAndDisplayAlerts(message: "Vérifiez bien que vous soyez bien connecté à internet pour pouvoir obtenir la météo parisienne.")
+                return
+            }
+            displayWeatherConditions(weatherConditions: weatherConditions)
         case 2:
             guard let weatherConditions = sharedFromWeather.weatherConditionsCurrentPosition else {
-                //display alert
+                createAndDisplayAlerts(message: "Vérifiez bien que l'application ait accès à votre position pour avoir la météo locale.")
                 return
             }
             displayWeatherConditions(weatherConditions: weatherConditions)

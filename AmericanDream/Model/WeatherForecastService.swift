@@ -18,8 +18,13 @@ class WeatherForecastService {
     var weatherConditionsNewYork: dataCurrentWeather?
     var weatherConditionsParis: dataCurrentWeather?
     var weatherConditionsCurrentPosition: dataCurrentWeather?
+    private var session = URLSession(configuration: .default)
     
     private static var urlApi = "http://api.openweathermap.org/data/2.5/weather?units=metric&lang=fr&appid=8d2f72c4af31a1d3bfaaee4d236a4588"
+    
+    init(session: URLSession){
+        self.session = session
+    }
     
     func  getCurrentWeatherConditions(whichLocation: WhichLocation,latitude: Double = 0, longitude: Double = 0,callback: @escaping (Bool) -> Void) {
 //        var request = URLRequest(url: WeatherForecastService.urlApi)
@@ -27,7 +32,7 @@ class WeatherForecastService {
 //        let body = "id=5128581&units=metric&lang=fr&appid=8d2f72c4af31a1d3bfaaee4d236a4588"
 //        request.httpBody = body.data(using: .utf8)
         let urlOnWhichRequest = urlToRequest(whichLocation: whichLocation, latitude: latitude, longitude: longitude)
-        let session = URLSession(configuration: .default)
+        
         task?.cancel()
         task = session.dataTask(with: urlOnWhichRequest, completionHandler: { (data, response, error) in
             DispatchQueue.main.async {

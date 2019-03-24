@@ -18,6 +18,7 @@ class ExchangeRateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImage()
+        result.text = ""
         toggleActivityIndicator(shown: true)
         ExchangeRateService.shared.getExchangeRate { (success, rate) in
             if success {
