@@ -168,7 +168,7 @@ class ExchangeRateServiceTestCase: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
     
-    func textTranslationServiceWithErrors() {
+    func testTranslationServiceWithErrors() {
         FakeResponseData.requestType = .translation
         let sessionFake = URLSessionFake(data: FakeResponseData.correctData, response: FakeResponseData.responseOK, error: FakeResponseData.error)
         let translationService = TranslationService(session: sessionFake)
@@ -182,7 +182,7 @@ class ExchangeRateServiceTestCase: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
     
-    func textTranslationServiceWithBadResponse() {
+    func testTranslationServiceWithBadResponse() {
         FakeResponseData.requestType = .translation
         let sessionFake = URLSessionFake(data: FakeResponseData.correctData, response: FakeResponseData.responseKO, error: nil)
         let translationService = TranslationService(session: sessionFake)
@@ -196,7 +196,7 @@ class ExchangeRateServiceTestCase: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
     
-    func textTranslationServiceWithIncorrectDatas() {
+    func testTranslationServiceWithIncorrectDatas() {
         FakeResponseData.requestType = .translation
         let sessionFake = URLSessionFake(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOK, error: nil)
         let translationService = TranslationService(session: sessionFake)
