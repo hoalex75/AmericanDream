@@ -67,7 +67,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
             self.stopAcquiringLocation()
             guard let latitudeToUse = self.latitude,let longitudeToUse = self.longitude else {
-                self.createAndDisplayAlerts(message: "Erreur lors de l'acquisition de votre position, impossible d'afficher la météo locale.")
+                self.createAndDisplayAlerts(message: "Erreur lors de l'acquisition de votre position, impossible d'afficher la météo locale. Vérifiez que l'application ait accès à votre position quand cette dernière est active.")
+                self.toggleActivityIndicator(shown: false)
                 return
             }
             self.sharedFromWeather.getCurrentWeatherConditions(whichLocation: .currentPosition, latitude: Double(latitudeToUse), longitude: Double(longitudeToUse), callback: { (successCurrent) in
@@ -108,6 +109,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         case 2:
             guard let weatherConditions = sharedFromWeather.weatherConditionsCurrentPosition else {
                 createAndDisplayAlerts(message: "Vérifiez bien que l'application ait accès à votre position pour avoir la météo locale.")
+                citySegmentedControl.selectedSegmentIndex = 0
+                displayCorrespondingWeather()
                 return
             }
             displayWeatherConditions(weatherConditions: weatherConditions)
@@ -138,6 +141,8 @@ extension WeatherViewController {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
+        } else {
+            createAndDisplayAlerts(message: "Impossible d'obtenir votre position. Vérifiez que l'application ait accès à votre position quand cette dernière est active.")
         }
     }
     
