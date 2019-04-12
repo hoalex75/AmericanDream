@@ -28,6 +28,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImage()
+        requestLocAuthorization()
         requestWeatherNewYork(display: true)
         
     }
@@ -52,12 +53,16 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func requestWeatherParis() {
-        sharedFromWeather.getCurrentWeatherConditions(whichLocation: .Paris) { (successParis) in
-            if successParis {
-                self.requestWeatherCurrentPosition()
+        sharedFromWeather.getCurrentWeatherConditions(whichLocation: .Paris) { [weak self]  (successParis) in
+            guard let check = self?.checkAuthorisation() else { return }
+            if successParis && check {
+                self?.requestWeatherCurrentPosition()
+            } else if !check {
+                self?.createAndDisplayAlerts(message: "Si vous voulez la météo locale et que vous avez autorisé l'accès à votre position, n'hésitez pas à rafraîchir la page.")
+                self?.toggleActivityIndicator(shown: false)
             } else {
-                self.createAndDisplayAlerts(message: "Erreur de connection réseau, échec de l'obtention de la météo parisienne.")
-                self.toggleActivityIndicator(shown: false)
+                self?.createAndDisplayAlerts(message: "Erreur de connection réseau, échec de l'obtention de la météo parisienne.")
+                self?.toggleActivityIndicator(shown: false)
             }
         }
     }
@@ -143,15 +148,16 @@ extension WeatherViewController {
     
     private func checkAuthorisation() -> Bool{
         let status = CLLocationManager.authorizationStatus()
-        if status == .denied || status == .notDetermined {
-            createAndDisplayAlerts(message: "Vous devez authoriser l'accès à votre position pour avoir la météo locale.")
+        if status == .denied {
+            createAndDisplayAlerts(message: "Vous devez autoriser l'accès à votre position pour avoir la météo locale.")
+            return false
+        } else if status == .notDetermined {
             return false
         }
         return true
     }
     
     private func initializeLocation() {
-        locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -165,6 +171,10 @@ extension WeatherViewController {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.stopUpdatingLocation()
         }
+    }
+    
+    private func requestLocAuthorization() {
+        locationManager.requestWhenInUseAuthorization()
     }
 }
 
