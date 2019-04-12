@@ -63,19 +63,23 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func requestWeatherCurrentPosition() {
-        initializeLocation()
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
-            self.stopAcquiringLocation()
-            guard let latitudeToUse = self.latitude,let longitudeToUse = self.longitude else {
-                self.createAndDisplayAlerts(message: "Erreur lors de l'acquisition de votre position, impossible d'afficher la météo locale. Vérifiez que l'application ait accès à votre position quand cette dernière est active.")
-                self.toggleActivityIndicator(shown: false)
-                return
+        if checkAuthorisation() {
+            initializeLocation()
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
+                self.stopAcquiringLocation()
+                guard let latitudeToUse = self.latitude,let longitudeToUse = self.longitude else {
+                    self.createAndDisplayAlerts(message: "Erreur lors de l'acquisition de votre position, impossible d'actualiser la météo locale. Vérifiez que l'application ait accès à votre position quand cette dernière est active.")
+                    self.toggleActivityIndicator(shown: false)
+                    return
+                }
+                self.sharedFromWeather.getCurrentWeatherConditions(whichLocation: .currentPosition, latitude: Double(latitudeToUse), longitude: Double(longitudeToUse), callback: { (successCurrent) in
+                    if !successCurrent {
+                        self.createAndDisplayAlerts(message: "Echec lors de la récupération des données relatives à la météo locale.")
+                    }
+                })
             }
-            self.sharedFromWeather.getCurrentWeatherConditions(whichLocation: .currentPosition, latitude: Double(latitudeToUse), longitude: Double(longitudeToUse), callback: { (successCurrent) in
-                if successCurrent {}
-                self.toggleActivityIndicator(shown: false)
-            })
         }
+        toggleActivityIndicator(shown: false)
     }
     
     private func toggleActivityIndicator(shown: Bool) {
@@ -119,7 +123,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    private func displayWeatherConditions(weatherConditions: dataCurrentWeather) {
+    private func displayWeatherConditions(weatherConditions: DataCurrentWeather) {
         cityName.text = weatherConditions.name
         weatherConditionsLabel.text = weatherConditions.weather[0].description.capitalized
         currentTemperatureLabel.text = "\(weatherConditions.main.temp) °C"
@@ -128,11 +132,22 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
 }
 
+// MARK: -Location Gestion
 extension WeatherViewController {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         latitude = locValue.latitude
         longitude = locValue.longitude
+    }
+    
+    
+    private func checkAuthorisation() -> Bool{
+        let status = CLLocationManager.authorizationStatus()
+        if status == .denied || status == .notDetermined {
+            createAndDisplayAlerts(message: "Vous devez authoriser l'accès à votre position pour avoir la météo locale.")
+            return false
+        }
+        return true
     }
     
     private func initializeLocation() {
@@ -153,6 +168,7 @@ extension WeatherViewController {
     }
 }
 
+// MARK: -General functions for controllers
 extension WeatherViewController: FunctionsForViewControllers {
     
     private func setBackgroundImage() {

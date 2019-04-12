@@ -22,7 +22,6 @@
 		FAA8F48F2237E91E0053A316 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8F48E2237E91E0053A316 /* WeatherViewController.swift */; };
 		FAA8F4912237EB920053A316 /* WeatherForecastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA8F4902237EB920053A316 /* WeatherForecastService.swift */; };
 		FABB9AED222B372000D131E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB9AEC222B372000D131E0 /* AppDelegate.swift */; };
-		FABB9AEF222B372000D131E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB9AEE222B372000D131E0 /* ViewController.swift */; };
 		FABB9AF2222B372000D131E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABB9AF0222B372000D131E0 /* Main.storyboard */; };
 		FABB9AF7222B372100D131E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABB9AF5222B372100D131E0 /* LaunchScreen.storyboard */; };
 		FABB9B03222B3BC700D131E0 /* ExchangeRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB9B02222B3BC700D131E0 /* ExchangeRateViewController.swift */; };
@@ -57,7 +56,6 @@
 		FAA8F4902237EB920053A316 /* WeatherForecastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastService.swift; sourceTree = "<group>"; };
 		FABB9AE9222B372000D131E0 /* AmericanDream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericanDream.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABB9AEC222B372000D131E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FABB9AEE222B372000D131E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FABB9AF1222B372000D131E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FABB9AF6222B372100D131E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FABB9AF8222B372100D131E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,11 +136,9 @@
 		FABB9AFF222B373200D131E0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FABB9AEE222B372000D131E0 /* ViewController.swift */,
 				FABB9B02222B3BC700D131E0 /* ExchangeRateViewController.swift */,
 				FAA8F4882235778A0053A316 /* TranslationViewController.swift */,
 				FAA8F48E2237E91E0053A316 /* WeatherViewController.swift */,
-				FA0C9C79223D1F48001F13D3 /* FunctionsForViewControllers.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -160,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				FA0C9C77223D1DC4001F13D3 /* Assets.xcassets */,
+				FA0C9C79223D1F48001F13D3 /* FunctionsForViewControllers.swift */,
 				FABB9AEC222B372000D131E0 /* AppDelegate.swift */,
 				FABB9AF8222B372100D131E0 /* Info.plist */,
 				FA4CCEB0222C3F98006C9967 /* VariousExtensions.swift */,
@@ -287,7 +284,6 @@
 				FA0C9C7A223D1F48001F13D3 /* FunctionsForViewControllers.swift in Sources */,
 				FAA8F4892235778A0053A316 /* TranslationViewController.swift in Sources */,
 				FA4CCEB1222C3F98006C9967 /* VariousExtensions.swift in Sources */,
-				FABB9AEF222B372000D131E0 /* ViewController.swift in Sources */,
 				FAA8F48F2237E91E0053A316 /* WeatherViewController.swift in Sources */,
 				FAA8F48B2235791A0053A316 /* TranslationService.swift in Sources */,
 				FABB9AED222B372000D131E0 /* AppDelegate.swift in Sources */,

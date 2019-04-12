@@ -31,9 +31,17 @@ class ExchangeRateViewController: UIViewController {
     }
     
     @IBAction func calculateAmount() {
-        ExchangeRateService.shared.sendResult(numberToChange: amountToExchange.text) { (success, resultNumber) in
-            if success {
-                result.text = "\(resultNumber!) Dollars."
+        let textToExchange = amountToExchange.text
+        if textToExchange == "" {
+            createAndDisplayAlerts(message: "Veuillez entrer un nombre pour pouvoir faire une conversion.")
+        } else {
+            ExchangeRateService.shared.sendResult(numberToChange: amountToExchange.text) { (success, resultNumber) in
+                if success {
+                    result.text = "\(resultNumber!) Dollars."
+                } else {
+                    self.createAndDisplayAlerts(message: "Veuillez entrer un nombre valide.")
+                    amountToExchange.text = ""
+                }
             }
         }
     }

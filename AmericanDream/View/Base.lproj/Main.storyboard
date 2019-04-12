@@ -33,7 +33,7 @@
                                 <rect key="frame" x="20" y="40" width="335" height="495"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="4qg-Du-2yv">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="192"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="203.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vfu-ie-R3A" userLabel="A traduire">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="71"/>
@@ -53,14 +53,14 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NDw-ej-xsw" userLabel="Traduction">
-                                                <rect key="frame" x="0.0" y="131" width="335" height="61"/>
+                                                <rect key="frame" x="0.0" y="131" width="335" height="72.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textTranslated" translatesAutoresizingMaskIntoConstraints="NO" id="bgv-SD-e4v">
                                                         <rect key="frame" x="0.0" y="0.0" width="270" height="30"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Texte traduit" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDl-Ir-DgU" userLabel="Texte traduit">
-                                                        <rect key="frame" x="0.0" y="38" width="110" height="23"/>
-                                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
+                                                        <rect key="frame" x="0.0" y="38" width="164.5" height="34.5"/>
+                                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="30"/>
                                                         <color key="textColor" red="0.75294117647058822" green="0.89803921568627454" blue="0.56470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

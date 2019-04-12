@@ -11,7 +11,7 @@ import Foundation
 class ExchangeRateService {
     static var shared = ExchangeRateService()
     
-    private static let urlApi = URL(string: "http://data.fixer.io/api/latest?access_key=98312c5648eafa487324aba893d79bcc&symbols=usd")!
+    private static let urlApi = URL(string: "http://data.fixer.io/api/latest?access_key=\(ExchangeRateService.apiKey)&symbols=usd")!
     private static let apiKey = "98312c5648eafa487324aba893d79bcc"
     private init() {}
     private var task: URLSessionDataTask?
@@ -22,12 +22,6 @@ class ExchangeRateService {
     }
     
     func getExchangeRate(callback: @escaping (Bool,Double?) -> Void) {
-//        var request = URLRequest(url: ExchangeRateService.urlApi)
-//        request.httpMethod = "POST"
-//        let body = "access_key=\(ExchangeRateService.apiKey)&symbols=usd"
-//        request.httpBody = body.data(using: .utf8)
-        
-        
         task?.cancel()
         task = session.dataTask(with: ExchangeRateService.urlApi) { (data, response, error) in
             DispatchQueue.main.async {
@@ -53,7 +47,10 @@ class ExchangeRateService {
     }
     
     func calculate(_ numberGiven: Double) -> Double{
-        let result: Double = rate!*numberGiven
+        guard let rateDollarEuro = rate else {
+            return 0
+        }
+        let result: Double = rateDollarEuro * numberGiven
         return result.roundedToASpecificNumberAfterComa(numberOfNumbersAfterComa: 2)
     }
     
@@ -72,7 +69,7 @@ class ExchangeRateService {
     }
 }
 
-struct ExchangeRate {
+struct ExchangeRate : Decodable{
     let success: Bool
     let base: String
     let rates : [String:Double]
@@ -84,21 +81,21 @@ struct ExchangeRate {
     }
 }
 
-extension ExchangeRate: Decodable {
-    enum ExchangeRateKeys: String, CodingKey {
-        case success = "success"
-        case base = "base"
-        case rates = "rates"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: ExchangeRateKeys.self) // defining our (keyed) container
-        let success: Bool = try container.decode(Bool.self, forKey: .success) // extracting the data
-        let base: String = try container.decode(String.self, forKey: .base) // extracting the data
-        let rates: [String:Double] = try container.decode([String:Double].self, forKey: .rates) // extracting the data
-        
-        self.init(success: success, base: base, rates: rates) // initializing our struct
-    }
-}
+//extension ExchangeRate: Decodable {
+//    enum ExchangeRateKeys: String, CodingKey {
+//        case success = "success"
+//        case base = "base"
+//        case rates = "rates"
+//    }
+//
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: ExchangeRateKeys.self) // defining our (keyed) container
+//        let success: Bool = try container.decode(Bool.self, forKey: .success) // extracting the data
+//        let base: String = try container.decode(String.self, forKey: .base) // extracting the data
+//        let rates: [String:Double] = try container.decode([String:Double].self, forKey: .rates) // extracting the data
+//
+//        self.init(success: success, base: base, rates: rates) // initializing our struct
+//    }
+//}
 
 
